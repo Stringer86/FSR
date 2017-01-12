@@ -1,9 +1,8 @@
 function readIt() { // passes all tests
-  let fr = new FileReader();
+  const fr = new FileReader();
   fr.onload = function() {
     const json = JSON.parse(this.result)
     const htmlDiv = document.getElementById('html');
-
 
     for (let i = 0; i < json.length; i++) {
       let tag = document.createElement(json[i].tag)
@@ -17,7 +16,7 @@ function readIt() { // passes all tests
           let parent = document.getElementsByTagName(json[i].tag)[i]
 
           parent.appendChild(tag2)
-        } else if (Array.isArray(json[i].content.content)){
+        } else if (Array.isArray(json[i].content.content)) {
 
           let tag2 = document.createElement(json[i].content.tag)
 
@@ -37,8 +36,9 @@ function readIt() { // passes all tests
 
           let content = json[i].content;
            for (var y = 0; y < content.length; y++) {
+             let tag = document.createElement(content[y].tag)
+
              if (typeof content[y].content === 'string') {
-               let tag = document.createElement(content[y].tag)
 
                tag.innerHTML = content[y].content
 
@@ -46,7 +46,6 @@ function readIt() { // passes all tests
 
                parent.appendChild(tag)
              } else {
-               let tag = document.createElement(content[y].tag)
 
                let parent = document.getElementsByTagName(json[i].tag)[i]
 
@@ -59,15 +58,12 @@ function readIt() { // passes all tests
 
                  tag3.innerHTML = addCont[z].content
                  tag.appendChild(tag3)
-               }
-             }
-           }
-
-          }
-
+                }
+              }
+            }
         }
     }
-
+  }
   fr.readAsText(this.files[0])
 }
 
