@@ -1,4 +1,4 @@
-document.getElementById("file").addEventListener('change', function() { // passes first two tests
+function readIt() { // passes all tests
   let fr = new FileReader();
   fr.onload = function() {
     const json = JSON.parse(this.result)
@@ -30,6 +30,7 @@ document.getElementById("file").addEventListener('change', function() { // passe
           parent.appendChild(tag2)
           ////////////////////////
           let addCont = json[i].content.content
+
           for (let y = 0; y < addCont.length; y++) {
             let tag3 = document.createElement(`${addCont[y].tag}`)
             tag3.innerHTML = addCont[y].content
@@ -37,6 +38,7 @@ document.getElementById("file").addEventListener('change', function() { // passe
           }
         } else if (Array.isArray(json[i].content)) {
           let parent = document.createElement(json[i].tag)
+
           htmlDiv.appendChild(parent)
           let content = json[i].content;
            for (var y = 0; y < content.length; y++) {
@@ -64,4 +66,6 @@ document.getElementById("file").addEventListener('change', function() { // passe
     }
 
   fr.readAsText(this.files[0])
-})
+}
+
+document.getElementById("file").addEventListener('change', readIt);
