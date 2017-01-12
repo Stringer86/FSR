@@ -19,14 +19,14 @@ document.getElementById("file").addEventListener('change', function() { // passe
 
           parent = parent[i]
           parent.appendChild(tag2)
-        } else {
+        } else if (Array.isArray(json[i].content.content)){
           let tag = document.createElement(`${json[i].tag}`)
 
           let tag2 = document.createElement(`${json[i].content.tag}`)
 
           htmlDiv.appendChild(tag)
 
-          const parent = document.getElementsByTagName(`${json[i].tag}`)[i]
+          let parent = document.getElementsByTagName(`${json[i].tag}`)[i]
           parent.appendChild(tag2)
           ////////////////////////
           let addCont = json[i].content.content
@@ -35,8 +35,33 @@ document.getElementById("file").addEventListener('change', function() { // passe
             tag3.innerHTML = addCont[y].content
             tag2.appendChild(tag3)
           }
+        } else if (Array.isArray(json[i].content)) {
+          let parent = document.createElement(json[i].tag)
+          htmlDiv.appendChild(parent)
+          let content = json[i].content;
+           for (var y = 0; y < content.length; y++) {
+             if (typeof content[y].content === 'string') {
+               let tag = document.createElement(`${content[y].tag}`)
+               tag.innerHTML = content[y].content
+               let parent = document.getElementsByTagName(`${json[i].tag}`)[i]
+               parent.appendChild(tag)
+             } else {
+               let tag = document.createElement(`${content[y].tag}`)
+               parent.appendChild(tag)
+
+               let addCont = content[y].content
+               for (var z = 0; z < addCont.length; z++) {
+                 let tag3 = document.createElement(`${addCont[z].tag}`)
+                 tag3.innerHTML = addCont[z].content
+                 tag.appendChild(tag3)
+               }
+             }
+           }
+
+          }
+
         }
     }
-  }
+
   fr.readAsText(this.files[0])
 })
