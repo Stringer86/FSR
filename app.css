@@ -1,6 +1,30 @@
-.html {
-  border: 1 px solid black;
-  background-color: grey;
-  width: auto;
-  height: auto;
+body {
+  font-family: helvetica;
+}
+.file {
+margin-left: 5%;
+margin-top: 2%;
+}
+
+
+#html {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+  border: 1px solid black;
+  padding: 5%;
+}
+
+
+header {
+  padding-left: 5%;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+}
+
+nav {
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
 }

@@ -1,7 +1,9 @@
 'use strict'
 
-function readIt() { // passes all tests
+function readIt(event) { // passes all tests
+  if (event.target.files[0].type !== 'application/json') return alert ("file not supported, bitch")
   const fr = new FileReader();
+
   fr.onload = function() {
     const json = JSON.parse(this.result)
     const htmlDiv = document.getElementById('html');
@@ -29,7 +31,7 @@ function readIt() { // passes all tests
 
       })
 
-      htmlDiv.innerHTML = htmlStr;
+      htmlDiv.innerHTML = htmlStr; // not 'secure'
 
     }
 
