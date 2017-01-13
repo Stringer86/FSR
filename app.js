@@ -1,7 +1,7 @@
 'use strict'
 
 function readIt(event) { // passes all tests
-  if (event.target.files[0].type !== 'application/json') return alert ("file not supported, bitch")
+  if (event.target.files[0].type !== 'application/json') return alert ("file not supported, yo")
   const fr = new FileReader();
 
   fr.onload = function() {
