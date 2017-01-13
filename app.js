@@ -11,16 +11,22 @@ function readIt() { // passes all tests
         json.forEach((e) => {
         if (typeof e.content.content === 'string') {
           htmlStr += `<${e.tag}><${e.content.tag}>${e.content.content}</${e.content.tag}></${e.tag}>`
+
         } else if (Array.isArray(e.content.content)) {
           let next = e.content.content
+
           myFunc(next)
         } else if (Array.isArray(e.content)) {
           htmlStr += `<${e.tag}>`
+
           myFunc(e.content)
+
           htmlStr += `</${e.tag}>`
         } else {
+
           htmlStr += `<${e.tag}>${e.content}</${e.tag}>`
         }
+
       })
 
       htmlDiv.innerHTML = htmlStr;
