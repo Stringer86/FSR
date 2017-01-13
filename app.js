@@ -5,12 +5,12 @@ function readIt(event) { // passes all tests
   const fr = new FileReader();
 
   fr.onload = function() {
-    const json = JSON.parse(this.result)
+    const obj = JSON.parse(this.result)
     const htmlDiv = document.getElementById('html');
     let htmlStr = '';
 
-    const myFunc = (json) => {
-        json.forEach((e) => {
+    const myFunc = (obj) => {
+        obj.forEach((e) => {
         if (typeof e.content.content === 'string') {
           htmlStr += `<${e.tag}><${e.content.tag}>${e.content.content}</${e.content.tag}></${e.tag}>`
 
@@ -35,7 +35,7 @@ function readIt(event) { // passes all tests
 
     }
 
-    myFunc(json);
+    myFunc(obj);
 
   }
   fr.readAsText(this.files[0])
